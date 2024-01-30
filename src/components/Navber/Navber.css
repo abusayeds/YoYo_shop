@@ -1,0 +1,12 @@
+.nevber{
+    position: sticky;
+    top: 0;
+}
+@media screen and (max-width: 700px) {
+    .nevber{
+       position:unset;
+        
+      
+    }
+    
+}
