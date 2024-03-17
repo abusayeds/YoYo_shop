@@ -3,19 +3,19 @@ import { AuthContext } from '../components/Context/Context';
 import api from '../api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faStar } from '@fortawesome/free-regular-svg-icons';
-import { faShoppingBag, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import {  faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 
 const Model = () => {
-    const{showModel,close, cartPtoduct,} =useContext(AuthContext)
+    const{showModel,close, cartPtoduct, } =useContext(AuthContext)
     if(!showModel) return null
     const [modelProduct, setModelProduct] =useState([])
     useEffect(() => {
         fetch(`${api}/products/${showModel}`)
         .then(res => res.json())
-        .then(data => setModelProduct(data))
+        .then(data =>
+         setModelProduct(data))
     },[])
-
     return (
         <div  className='fixed inset-0 bg-black bg-opacity-30 md:p-0 px-2 py-4   backdrop-blur-sm flex  '>
             <div className=' relative md:flex justify-between items-center gap-5 md:w-4/6 m-auto rounded z-50 bg-white md:p-2 pt-5 '>
@@ -58,13 +58,15 @@ const Model = () => {
                     </div>
                     <div className='ml-5'>
                         <p className='text-gray-400'>Quantity</p>
-                        <button className='border px-2 text-xl mt-2'>+</button>
-                        <button className='border px-2 text-xl'>00</button>
-                        <button className='border px-2 text-xl'>-</button>
+                        {/* <button onClick={() => increaseQuantity()} className='border hover:bg-red-600 hover:text-white px-2 text-xl mt-2 '>+</button>
+                        <button className='border px-2 text-xl'>{quantity}</button>
+                        <button onClick={() => DeincreaseQuantity()} className='border hover:bg-teal-600 hover:text-white px-2 text-xl'>-</button> */}
                     </div>
                 </div>
-                <button onClick={() => cartPtoduct(modelProduct)} className='bg-teal-500 rounded py-1 hover:bg-teal-600 text-white px-2 mt-4'> <FontAwesomeIcon icon={faShoppingCart }></FontAwesomeIcon> Add to cart </button>
-                <button className='bg-yellow-500 rounded py-1 hover:bg-yellow-600 text-white px-2 ml-6'> <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon> Save </button>
+                <div className='flex'>
+                <p onClick={() => close()}><button onClick={() => cartPtoduct(modelProduct)}className='bg-teal-500 rounded py-1 hover:bg-teal-600 text-white px-2 mt-4'> <FontAwesomeIcon  icon={faShoppingCart }></FontAwesomeIcon> Add to cart </button></p>
+                <button className='bg-yellow-500 rounded py-1 hover:bg-yellow-600 text-white px-2 ml-6 mt-4'> <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon> Save </button>
+                </div>
             </div>
             <p onClick={() => close()} className='hover:bg-red-600 rounded bg-red-500 absolute top-0 right-0 px-3 py-1  text-white font-bold'>X</p>
             </div>

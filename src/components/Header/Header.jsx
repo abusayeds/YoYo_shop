@@ -7,11 +7,6 @@ import { faAngleDown, faAngleUp, faBars, faHome, faSearch, faShoppingCart, faX }
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Context/Context';
 
-
-
-
-
-
 const Header = () => {
         const {collection,cartItem} =useContext(AuthContext)
         const [open, setOpen ] = useState(false)

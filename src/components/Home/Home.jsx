@@ -13,7 +13,7 @@ const {openModel} = useContext(AuthContext)
 const [products, setProducts] = useState([])
 const [counts ,setcounts] = useState([])
 const count = counts.length;
-console.log(count);
+// console.log(count);
 
 const [page, setPage] = useState(0)
 const [size , setsize] =useState(10)
