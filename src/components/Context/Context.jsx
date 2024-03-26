@@ -24,8 +24,9 @@ const [cartItem,setCartItem ] =useState([])
 const deleteProduct = (id) => {
     const deleteitem = cartItem.filter(i => i._id !== id)
     setCartItem(deleteitem)
-  return deleteProduct
+    return deleteProduct
 } 
+// add product
 const cartPtoduct = (cart) => {
      const id =cartItem.find(c => c._id === cart._id  )
       if(id) {
@@ -38,12 +39,34 @@ const cartPtoduct = (cart) => {
    
     return cartPtoduct
 }
+// add product
+
+// increse && decrease quntity  
+
+   const  hendelDecrease = (cart_id) =>  {
+    setCartItem(cartItem => 
+        cartItem.map((item) => 
+            cart_id === item._id ? { ...item, quantity : parseFloat (item.quantity ) - (item.quantity > 1 ? 1 : 0)} : item
+            )
+        )
+   }
+   
+   const hendleincrease = (cart_id) => {
+    setCartItem(cartItem => 
+        cartItem.map((item) => 
+            cart_id === item._id ? {...item, quantity : parseFloat(item.quantity )  + (item.quantity < 10 ? 1 : 0)} : item
+            )
+        )
+   }
+// increse && decrease quntity 
+
 
   
 const authinfo = {
     
     collection,showModel,cartItem,
     openModel,close,cartPtoduct,deleteProduct, 
+    hendelDecrease,hendleincrease
 
 }
 

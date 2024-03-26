@@ -8,6 +8,7 @@ import Order from "./components/Oder/Order"
 import Collection from "./components/Collection/Collection"
 import Model from "./layouts/Model"
 import Cart from "./components/Cart/Cart"
+import Login from "./components/Login/Login"
 
 
 
@@ -38,6 +39,10 @@ function App() {
                 path: '/cart',
                 element:<Cart></Cart>
             },
+            {
+                path:'/login',
+                element: <Login></Login>
+            }
           
            
         ]
