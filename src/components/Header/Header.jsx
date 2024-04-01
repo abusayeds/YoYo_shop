@@ -56,8 +56,10 @@ const Header = () => {
             </div>
 
             <div>
-             <FontAwesomeIcon className='text-2xl mt-3 ml-2 px-2 ' icon={faUser}></FontAwesomeIcon>
+              <Link to='/login'>
+              <FontAwesomeIcon className='text-2xl mt-3 ml-2 px-2 ' icon={faUser}></FontAwesomeIcon>
              <span className=' text-xxl font-semibold'>Profile</span>
+              </Link>
             </div>
 
           </div>
@@ -149,8 +151,10 @@ const Header = () => {
         </div>
 
         <div>
+        <Link to= '/login'>
         <FontAwesomeIcon className='text-1xl ml-3 ' icon={faUser}></FontAwesomeIcon>
-        <p  className=' text-xxl font-semibold'><small>Profile</small></p>
+        <p className=' text-xxl font-semibold'><small>Profile</small></p>
+        </Link>
         </div>
 
         </div>

@@ -2,7 +2,7 @@ import React, { useContext,  useEffect,  useState } from 'react';
 import { AuthContext } from '../Context/Context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
-import { faAngleDown, faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, faArrowLeftLong, faBagShopping } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 
@@ -21,55 +21,25 @@ const Cart = () => {
     }
   
     return (
-        // <div className='md:p-0 px-2 pb-20 z-50'>
-        //   <p className='text-gray-400 text-4xl font-semibold text-center'>Shopping Cart !!</p>
-        //   {
-        //     cartItem.map(item => 
-        //     <div className=' md:grid md:grid-cols-2 rounded bg-gray-200  mt-4 md:w-4/6 md:mx-auto p-2 justify-center items-center' key={item._id}>
-        //         <div className=' flex items-center justify-around'>
-        //             <div className=''>
-        //             {/* <p onClick={() => deleteProduct(item._id) }  className=' hover:bg-red-600 px-3 py-1 hover:text-white hover:font-semibold  rounded-full'> <FontAwesomeIcon icon={faTa}></FontAwesomeIcon> </p>
-        //              */}
-        //               <p onClick={() => deleteProduct(item._id) } className=" px-2 py-1 rounded-full hover:text-red-600 text-red-500 text-xl md:hidden" > <FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon></p>
-        //               <img className='w-20 rounded' src= {item.image} alt=""  />
-                 
-        //             </div>
-        //             <p>{item.name}</p>
-                   
-        //         </div>
-        //         <div className='  md:m-0  md:flex hidden justify-around '>
-                
-        //         <div className='flex justify-center border  bg-white  items-center'>
-        //             <button onClick={() =>hendleincrease (item._id)}  className='px-3 h-full bg-gray-300 hover:bg-gray-400 hover:text-white'>+</button>
-        //             <p className='px-6  '>{item.quantity} </p>
-        //             <button onClick={() => hendelDecrease (item._id)}  className='px-3 h-full bg-gray-300 hover:bg-gray-400 hover:text-white'>-</button>
-                    
-        //         </div>
-        //         <p> Price  : {item.price} $</p>
-        //         <p onClick={() => deleteProduct(item._id) } className="px-2 py-1 rounded-full hover:bg-red-500  hover:text-white text-red-400 text-xl md:block hidden" > <FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon></p>
-        //         </div>
-        //         {/* mobil devise */}
-        //         <div className=' bg-white p-4 rounded  md:m-0 mt-5 flex md:hidden justify-around '>
-                
-        //         <div className='flex justify-center border  bg-white  items-center'>
-        //             <button onClick={() =>hendleincrease (item._id)}  className='px-3 h-full bg-gray-300 hover:bg-gray-400 hover:text-white'>+</button>
-        //             <p className='px-6  '>{item.quantity} </p>
-        //             <button onClick={() => hendelDecrease (item._id)}  className='px-3 h-full bg-gray-300 hover:bg-gray-400 hover:text-white'>-</button>
-                    
-        //         </div>
-        //         <p> {item.price} $</p>
-        //         </div>
-            
-        //     </div>  
-                
-        //         )
-        //   }
-        //   <hr className='mt-4 md:w-4/6 md:mx-auto' />
-         
-        // </div>
-        <main className=' md:mb-0 mb-20 bg-slate-200 p-10'>
+       
+        <main className=' md:mb-0 mb-20 bg-slate-200 md:p-10'>
             <section className='  md:w-5/6 m-auto md:flex w-full '>
-                <div className=' relative md:w-4/5  bg-slate-50 p-2'>
+                {
+                    cartItem.length === 0 ? 
+                   <div className=" md:w-4/5 flex items-center justify-center h-52">
+                 
+                 <div>
+                     <div className="flex items-center justify-center ">
+                      <p className="text-4xl bg-blue-200 text-blue-500 rounded-full px-6 py-5"><FontAwesomeIcon icon={faBagShopping}></FontAwesomeIcon></p>    
+                     </div>
+                     <div className="text-center md:w-5/6 m-auto">
+                     <p className="text-2xl md:font-semibold">Opps !!! Your cart is empty</p>    
+                    <p>No items added in your cart. Please add product to your cart list. <Link to='/' className="text-blue-500"> Back to Home</Link></p> 
+                      </div>   
+                 </div>
+                 </div>
+                    :
+                    <div className='  md:w-4/5  bg-slate-50 p-2'>
                     <div className='flex w-full justify-around text-start '>
                         <p className='font-semibold'>Shopping cart</p>
                         <p className='font-semibold'>Total item = {cartItem.length}</p>
@@ -111,8 +81,10 @@ const Cart = () => {
                         )
                      }
                     
-                  <p className=' text-teal-600 font-semibold absolute bottom-0'><Link to='/'><FontAwesomeIcon icon={faArrowLeftLong}></FontAwesomeIcon> Go Back</Link></p>
+                  <p className=' text-teal-600 font-semibold  mt-10'><Link to='/'><FontAwesomeIcon icon={faArrowLeftLong}></FontAwesomeIcon> Go Back</Link></p>
                 </div>
+                }
+              
                 <div className='md:w-1/4  p-2  bg-slate-100'>
                     <p className='font-semibold text-center'>Order Summary</p>
                     <hr className='w-full mt-2' />

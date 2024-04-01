@@ -9,6 +9,7 @@ import Collection from "./components/Collection/Collection"
 import Model from "./layouts/Model"
 import Cart from "./components/Cart/Cart"
 import Login from "./components/Login/Login"
+import SignUp from "./components/Login/SignUp"
 
 
 
@@ -42,6 +43,10 @@ function App() {
             {
                 path:'/login',
                 element: <Login></Login>
+            },
+            {
+                path :'/signup',
+                element : <SignUp></SignUp>
             }
           
            
