@@ -1,6 +1,8 @@
 import React, {  createContext, useEffect, useState } from 'react';
 import api from '../../api';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+import app from '../../firebase/firebase.Config';
 
  export const AuthContext =createContext()
 
@@ -61,12 +63,61 @@ const cartPtoduct = (cart) => {
 // increse && decrease quntity 
 
 
+// sign in methods
+const [user ,setUser] = useState(null)
+
+const auth = getAuth(app)
+ const hendelgooglesignin = (provider ,navigete ,location) =>{
+   signInWithPopup(auth,provider)
+   .then( result => {
+    const user = result.user
+    navigete( location?.state ? location?.state : '/')
+   })
   
+   .catch(error => console.error('error' , error))
+    return hendelgooglesignin
+ }
+
+ const createUser = (email,password) => {
+    return createUserWithEmailAndPassword(auth,email,password)
+ }
+ const signup = (email,password) => {
+    return signInWithEmailAndPassword(auth ,email, password)
+     
+   }
+
+ const logOut = () => {
+       signOut(auth)
+       .then(() => {
+        setUser(null)
+       })
+       .catch(() => {
+        setUser(null)
+       })
+ }
+ useEffect(() => {
+    const unSubscribe = onAuthStateChanged(auth,(currentUser) => {
+        setUser(currentUser)
+        return () => unSubscribe()
+    })
+},[])
+
+// console.log(user);
+// sign in methods
+
+// search filed
+const  [search , setSearch] = useState()
 const authinfo = {
     
     collection,showModel,cartItem,
     openModel,close,cartPtoduct,deleteProduct, 
-    hendelDecrease,hendleincrease
+    hendelDecrease,hendleincrease,
+    setSearch,search,
+    
+    // sign in funtion
+    user,
+    hendelgooglesignin, logOut,createUser,signup
+    // sign in funtion
 
 }
 

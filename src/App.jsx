@@ -6,10 +6,12 @@ import Main from "./layouts/Main/Main"
 import Block from "./components/Block/Block"
 import Order from "./components/Oder/Order"
 import Collection from "./components/Collection/Collection"
-import Model from "./layouts/Model"
+
 import Cart from "./components/Cart/Cart"
 import Login from "./components/Login/Login"
 import SignUp from "./components/Login/SignUp"
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute"
+
 
 
 
@@ -23,6 +25,7 @@ function App() {
                 path: '/',
                 element: <Home></Home>
             },
+          
             {
                 path: '/block',
                 element: <Block></Block>
@@ -34,11 +37,11 @@ function App() {
             },
             {
                 path: '/collection/:category',
-                element: <Collection></Collection>
+                element: <PrivateRoute> <Collection></Collection></PrivateRoute>
             },
             {
                 path: '/cart',
-                element:<Cart></Cart>
+                element: <PrivateRoute><Cart></Cart></PrivateRoute>
             },
             {
                 path:'/login',
