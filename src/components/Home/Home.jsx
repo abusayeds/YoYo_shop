@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom';
 
 
 const Home = () => {
-const {openModel,} = useContext(AuthContext)
+const {openModel,  collection} = useContext(AuthContext)
 
 
 const [products, setProducts] = useState([])
@@ -26,8 +26,8 @@ console.log(searchItem);
 const [counts ,setcounts] = useState([])
 const count = counts.length;
 
-const [page, setPage] = useState(0)
-const [size , setsize] =useState(20)
+const [page, setPage] = useState(5)
+const [size , setsize] =useState(10)
 const pages = Math.ceil(count/ size)
 
   useEffect(() => {
@@ -56,18 +56,18 @@ const pages = Math.ceil(count/ size)
    
 
     return (
-       <main>
-         <div className=' flex justify-between p-10 md:mx-auto  mt-10'>
+       <main className='md:p-0 px-2'>
+         <div className=' flex  md:p-10   mt-5'>
                <div className=' w-full  md:flex hidden justify-center items-center  '>
                 <img className=' h-96 bg-slate-500 ' src={image} alt=""  />
                 
                </div>
                   
-                <div className=' w-full  flex items-center  '>
+                <div className=' w-full  flex md:justify-start justify-center items-center  '>
                     <div>
                     <div className=''>
-                     <p className=' text-5xl font-semibold'>Discover World Best <br />Jewelry</p>
-                     <p className=' text-2xl mt-2'>Bey 10+ Product then discount <span className=' text-red-600 font-bold'>40%</span></p>
+                     <p className=' md:text-5xl text-2xl font-semibold'>Discover World Best <br />Jewelry</p>
+                     <p className=' md:text-2xl mt-2'>Bey 10+ Product then discount <span className=' text-red-600 font-bold'>40%</span></p>
                      </div>
                      <form onSubmit={  hendelSearch} className=' mt-4 flex md:w-96 rounded border border-gray-300 focus:outline-none  placeholder-gray-800'>
                     <input className=' focus:outline-none  p-2 md:w-96' name='search' type="text" placeholder='Search product' />
@@ -83,46 +83,50 @@ const pages = Math.ceil(count/ size)
          </div>
 
 
-         <div className='flex justify-between px-10 '>
-             <div className='flex justify-center items-center'>
-              <div>
-              <img className='w-16 ' src={delivary} alt="" />
+         <div className=' grid md:grid-cols-4  md:justify-between md:mt-0 mt-5 md:px-10 '>
+             <div className='flex md:justify-center items-center mt-1'>
+              <div className='flex'>
+              <img className='w-10' src={delivary} alt="" />
               </div>
-              <div>
-               <p className=' text-xl font-semibold'>Fast & Secure Delivery</p>
+              <div className='ml-2'>
+               <p className='  font-semibold'>Fast & Secure Delivery</p>
                <small className=' text-gray-600'>Tell about your service.</small>
               </div>
              </div>
-             <div className='flex justify-center items-center'>
-              <div>
-              <img className='w-16 ' src={repless} alt="" />
+             <div className='flex md:justify-center  items-center mt-1'>
+              <div  className=' w'>
+              <img className='w-10' src={repless} alt="" />
               </div>
-              <div>
-               <p className=' text-xl font-semibold'>2 Days Return Policy</p>
+              <div className='ml-2'>
+               <p className='  font-semibold'>2 Days Return Policy</p>
                <small className=' text-gray-600'>No question ask.</small>
               </div>
              </div>
-             <div className='flex justify-center items-center'>
+             <div className='flex md:justify-center items-center mt-1'>
               <div>
-              <img className='w-16 ' src={manyBack} alt="" />
+              <img className='w-10' src={manyBack} alt="" />
               </div>
-              <div>
-               <p className=' text-xl font-semibold'>Money Back Guarantee</p>
+              <div className='ml-2'>
+               <p className='  font-semibold'>Money Back Guarantee</p>
                <small className=' text-gray-600'>Within 5 business days</small>
               </div>
              </div>
-             <div className='flex justify-center items-center'>
+             <div className='flex md:justify-center items-center mt-1'>
               <div>
-              <img className='w-16 ' src={servise} alt="" />
+              <img className='w-10' src={servise} alt="" />
               </div>
-              <div>
-               <p className=' text-xl font-semibold'>24 X 7 Service</p>
+              <div className='ml-2'>
+               <p className='  font-semibold'>24 X 7 Service</p>
                <small className=' text-gray-600'>Online service for customer</small>
               </div>
              </div>
             
 
          </div>
+         <div className=' text-center my-10'>
+                <p className=' text-4xl'>All Products are hear !!</p>
+                <small>This ranges from women and men's outfits to children's clothing, shoes, accessories, and more. <br /> People love their clothes, and fashion isn't going anywhere!</small>
+            </div>
         
            {
             searchItem.length === 0 ?
@@ -165,15 +169,29 @@ const pages = Math.ceil(count/ size)
                 
                 
                  <option value= '10'>15</option>
-                 <option selected   value= '15'>20</option>
-                 <option value= '20'>25</option>
-                 <option value= '25'>30</option>
+                 <option  value= '5'>5</option>
+                 <option selected   value= '10'>10</option>
+                 <option value= '15'>15</option>
               </select>
               </div>
               <FontAwesomeIcon icon={faAngleRight} className='ml-4'> </FontAwesomeIcon>
               </div>
-             
-           </section>
+              <div className=' text-center my-10'>
+                <p className=' text-4xl'>Top Category Products Of The Site</p>
+                <small>This ranges from women and men's outfits to children's clothing, shoes, accessories, and more. <br /> People love their clothes, and fashion isn't going anywhere!</small>
+            </div>
+           <div className='text-center my-10 w-full grid md:grid-cols-6 grid-cols-2 p-2 md:gap-5 '>
+                        {
+                            collection.map(col => 
+                                <div  key={col._id} className=' z-50 md:space-x-6'>
+                                  <button className=' w-28 md:w-32 md:text-xxl mt-2 relative border font-medium border-teal-600 bg-transparent px-6 py-2 rounded md:uppercase text-teal-600 transition-colors before:absolute before:left-0 before:top-0 before:-z-10 md:before:h-full md:before:w-full before:origin-top-left before:scale-x-0 before:bg-teal-600 before:transition-transform before:duration-300  hover:text-white md:before:hover:scale-x-100  '> <Link to={`/collection/${col.category}`}>{col.name}</Link></button>
+                                </div>
+                                
+                                )
+                        }
+                       
+            </div>
+            </section>
            :
         //    search product
            <section>
